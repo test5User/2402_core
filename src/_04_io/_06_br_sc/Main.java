@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 
 public class Main {
+    //считывание файла с помощью объекта BufferedReader
     @SneakyThrows
     public static void main(String[] args) {
         try (var br = new BufferedReader(new FileReader("src/_04_io/_06_br_sc/file.file"))){
