@@ -39,7 +39,60 @@ public class Main {
         tests.stream()
                 .flatMap(it -> it.getList().stream())
                 .forEach(it -> System.out.print(it + ", "));
+        System.out.println();
+        //Сортировка - бывает 2 типов: простая и с компаратором.
+        wildCats.stream()
+                .sorted()
+                .map(WildCat::getName)
+                .forEach(it -> System.out.print(it + ", "));
+        System.out.println();
+        //сортировка по возрасту
+        wildCats.stream()
+                .sorted(new WildCatAgeComparator())
+                .map(WildCat::getName)
+                .forEach(it -> System.out.print(it + ", "));
+        System.out.println();
+        //сортировка по полу
+        wildCats.stream()
+                .sorted(new WildCatGenderComparator())
+                .map(WildCat::getName)
+                .forEach(it -> System.out.print(it + ", "));
+        System.out.println();
+        //ваши извращения... сначала выводим отсортированные больше 10 лет, затем
+        //отсортированные меньше 10 лет
+        var oldStream = wildCats.stream()
+                .filter(it -> it.getAge() >= 10)
+                .sorted(new WildCatAgeComparator());
+        var youngStream = wildCats.stream()
+                .filter(it -> it.getAge() < 10)
+                .sorted(new WildCatAgeComparator());
+        Stream.concat(oldStream, youngStream)
+                .map(WildCat::getAge)
+                .forEach(it -> System.out.print(it + ", "));
+        System.out.println();
+        //Избавление от дубликатов
+        wildCats.stream()
+                .map(WildCat::getName)
+                .forEach(it -> System.out.print(it + ", "));
+        System.out.println();
+        wildCats.stream()
+                .distinct()
+                .map(WildCat::getName)
+                .forEach(it -> System.out.print(it + ", "));
+        System.out.println();
+        //пропуск и ограничение количества
+        wildCats.stream()
+                .skip(3)
+                .limit(2)
+                .map(WildCat::getName)
+                .forEach(it -> System.out.print(it + ", "));
+        System.out.println();
+        //Экзотический метод
+        wildCats.stream()
+                .sorted(new WildCatAgeComparator())
+                .takeWhile(it -> it.getAge() < 50)
+                .map(WildCat::getName)
+                .forEach(it -> System.out.print(it + ", "));
+        System.out.println();
     }
-
-
 }
