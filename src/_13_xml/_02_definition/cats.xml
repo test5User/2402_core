@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<cats>
+    <cat>
+        <id>1</id>
+        <name>Barsik</name>
+        <age>2</age>
+    </cat>
+
+    <cat id="2">
+        <name>Murka</name>
+        <age>5</age>
+    </cat>
+
+    <cat id="3" name="Mashka" age="7"/>
+
+</cats>
