@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--определяем намспэйс-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<!--    описываем корневой элемент-->
+    <xs:element name="cats">
+<!--        определяем, что это сложный тип-->
+        <xs:complexType>
+<!--            определяем, что это коллекция-->
+            <xs:sequence>
+<!--                указываем из каких элементов состоит коллекция-->
+                <xs:element name="cat" type="CatModel" maxOccurs="3"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+<!--    описываем тип CatModel-->
+    <xs:complexType name="CatModel">
+<!--        определим, что внутри есть последовательность из двух элементов-->
+        <xs:sequence>
+<!--            определим, что имя должно быть больше 1 символа, поскольку этого нет - опишем его позже-->
+            <xs:element name="name" type="notEmptyString"/>
+<!--            а вот положительные целые числа описаны в схеме-->
+            <xs:element name="age" type="xs:positiveInteger"/>
+        </xs:sequence>
+<!--        опишем аттрибут (после описания вложенных элементов)-->
+        <xs:attribute name="id" type="xs:positiveInteger"/>
+    </xs:complexType>
+<!--    описываем тип, который соответствует не пустой строке-->
+    <xs:simpleType name="notEmptyString">
+<!--        налагаем на тип строка ограничение по длине-->
+        <xs:restriction base="xs:string">
+<!--            определим, что минимальная длина строки = 1 символ-->
+            <xs:minLength value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
